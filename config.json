@@ -1,0 +1,225 @@
+{
+  "_comment": "Rotina fixa semanal. Edite os horários se sua rotina mudar. Todos os horários em HH:MM, 24h.",
+  "week": {
+    "monday": {
+      "type": "aula_manha"
+    },
+    "tuesday": {
+      "type": "sem_aula"
+    },
+    "wednesday": {
+      "type": "aula_manha"
+    },
+    "thursday": {
+      "type": "aula_manha"
+    },
+    "friday": {
+      "type": "aula_manha"
+    },
+    "saturday": {
+      "type": "fim_de_semana"
+    },
+    "sunday": {
+      "type": "fim_de_semana"
+    }
+  },
+  "day_templates": {
+    "aula_manha": {
+      "label": "Dia de aula",
+      "blocks": [
+        {
+          "start": "05:30",
+          "end": "07:00",
+          "label": "Acordar / se arrumar / ir pra aula"
+        },
+        {
+          "start": "07:00",
+          "end": "12:20",
+          "label": "Aula"
+        },
+        {
+          "start": "12:20",
+          "end": "13:30",
+          "label": "Volta pra casa / pausa"
+        },
+        {
+          "start": "13:30",
+          "end": "18:00",
+          "label": "Trabalho (remoto, almoça durante)"
+        },
+        {
+          "start": "18:00",
+          "end": "20:00",
+          "label": "Estudo (faculdade)",
+          "fixed": "study",
+          "minutes": 120
+        },
+        {
+          "start": "20:00",
+          "end": "21:30",
+          "label": "Atividade física",
+          "fixed": "exercise",
+          "minutes": 90
+        },
+        {
+          "start": "21:30",
+          "end": "23:00",
+          "label": "Tempo livre / relaxar"
+        },
+        {
+          "start": "23:00",
+          "end": "05:30",
+          "label": "Dormir (~6h30)"
+        }
+      ]
+    },
+    "sem_aula": {
+      "label": "Dia sem aula (home office o dia todo)",
+      "blocks": [
+        {
+          "start": "05:30",
+          "end": "07:30",
+          "label": "Acordar / manhã livre"
+        },
+        {
+          "start": "07:30",
+          "end": "12:00",
+          "label": "Trabalho (remoto)"
+        },
+        {
+          "start": "12:00",
+          "end": "13:00",
+          "label": "Pausa / almoço"
+        },
+        {
+          "start": "13:00",
+          "end": "18:00",
+          "label": "Trabalho (remoto)"
+        },
+        {
+          "start": "18:00",
+          "end": "20:00",
+          "label": "Estudo (faculdade)",
+          "fixed": "study",
+          "minutes": 120
+        },
+        {
+          "start": "20:00",
+          "end": "21:30",
+          "label": "Atividade física",
+          "fixed": "exercise",
+          "minutes": 90
+        },
+        {
+          "start": "21:30",
+          "end": "23:00",
+          "label": "Tempo livre / relaxar"
+        },
+        {
+          "start": "23:00",
+          "end": "05:30",
+          "label": "Dormir (~6h30)"
+        }
+      ]
+    },
+    "fim_de_semana": {
+      "label": "Fim de semana",
+      "blocks": [
+        {
+          "start": "08:00",
+          "end": "20:00",
+          "label": "Livre (família, descanso, lazer)"
+        },
+        {
+          "start": "20:00",
+          "end": "21:30",
+          "label": "Atividade física",
+          "fixed": "exercise",
+          "minutes": 90
+        },
+        {
+          "start": "21:30",
+          "end": "23:00",
+          "label": "Livre"
+        },
+        {
+          "start": "23:00",
+          "end": "08:00",
+          "label": "Dormir (~9h)"
+        }
+      ],
+      "optional_study_minutes": 90,
+      "optional_study_note": "Só usar se estiver atrasado em alguma entrega. Preferência é NÃO estudar no fim de semana."
+    }
+  },
+  "effort_rules": {
+    "_comment": "Estimativa de minutos totais necessários por tipo de atividade, baseado em palavras-chave no título (case-insensitive). A primeira palavra-chave que bater é usada.",
+    "keywords": [
+      {
+        "match": [
+          "prova",
+          "avaliação",
+          "avaliacao",
+          "ada",
+          "reavaliação",
+          "reavaliacao"
+        ],
+        "minutes": 240,
+        "category": "Prova/Avaliação"
+      },
+      {
+        "match": [
+          "trabalho interdisciplinar",
+          "projeto",
+          "trabalho final"
+        ],
+        "minutes": 360,
+        "category": "Projeto grande"
+      },
+      {
+        "match": [
+          "lista"
+        ],
+        "minutes": 90,
+        "category": "Lista de exercícios"
+      },
+      {
+        "match": [
+          "quiz"
+        ],
+        "minutes": 45,
+        "category": "Quiz"
+      },
+      {
+        "match": [
+          "leitura"
+        ],
+        "minutes": 60,
+        "category": "Leitura acadêmica"
+      },
+      {
+        "match": [
+          "atividade"
+        ],
+        "minutes": 90,
+        "category": "Atividade"
+      }
+    ],
+    "default_minutes": 90,
+    "default_category": "Atividade genérica"
+  },
+  "planning": {
+    "safety_buffer_days": 1,
+    "lookahead_days_for_report": 14,
+    "active_window_days": 21,
+    "announcement_days_back": 5,
+    "files_recent_days": 14,
+    "files_per_course": 5,
+    "excluded_course_ids": [],
+    "excluded_course_name_keywords": [
+      "Espaço da Coordenação",
+      "Mentoria de Carreira",
+      "Extensão em foco"
+    ]
+  }
+}

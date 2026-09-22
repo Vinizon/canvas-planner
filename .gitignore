@@ -1,0 +1,10 @@
+.env
+*.json.bak
+__pycache__/
+materials/
+data.json
+data.old.json
+index.html
+hoje.md
+dist/
+node_modules/

@@ -1,0 +1,69 @@
+name: Atualizar cronograma
+
+on:
+  schedule:
+    - cron: "0 9 * * *"   # 09:00 UTC = 06:00 em Belo Horizonte
+  workflow_dispatch:       # permite rodar na mão pelo botão "Run workflow"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Sao_Paulo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Buscar dados do Canvas
+        env:
+          CANVAS_TOKEN: ${{ secrets.CANVAS_TOKEN }}
+          CANVAS_BASE_URL: https://pucminas.instructure.com
+          SKIP_MATERIALS: "1"
+        run: python plan.py --json data.json > hoje.md
+
+      - name: Gerar página
+        run: python generate_page.py data.json index.html
+
+      - name: Proteger com senha
+        env:
+          PAGE_PASSWORD: ${{ secrets.PAGE_PASSWORD }}
+        run: |
+          npx --yes staticrypt@3 index.html -p "$PAGE_PASSWORD" --short \
+            --remember 30 -d dist \
+            --template-title "Cronograma PUC" \
+            --template-instructions "Digite a senha para ver o cronograma." \
+            --template-button "Abrir" \
+            --template-placeholder "Senha" \
+            --template-remember "Lembrar neste aparelho" \
+            --template-error "Senha incorreta"
+          touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
