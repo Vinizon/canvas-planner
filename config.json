@@ -2,19 +2,21 @@
   "_comment": "Rotina fixa semanal. Edite os horários se sua rotina mudar. Todos os horários em HH:MM, 24h.",
   "week": {
     "monday": {
-      "type": "aula_manha"
+      "type": "aula_seg_ter"
     },
     "tuesday": {
-      "type": "sem_aula"
+      "type": "aula_seg_ter"
     },
     "wednesday": {
-      "type": "aula_manha"
+      "type": "aula_qua"
     },
     "thursday": {
-      "type": "aula_manha"
+      "type": "aula_qui",
+      "biweekly_from": "2026-10-01",
+      "off_type": "sem_aula"
     },
     "friday": {
-      "type": "aula_manha"
+      "type": "aula_sex"
     },
     "saturday": {
       "type": "fim_de_semana"
@@ -24,8 +26,8 @@
     }
   },
   "day_templates": {
-    "aula_manha": {
-      "label": "Dia de aula",
+    "aula_seg_ter": {
+      "label": "Dia de aula (07:00–10:40)",
       "blocks": [
         {
           "start": "05:30",
@@ -34,6 +36,55 @@
         },
         {
           "start": "07:00",
+          "end": "10:40",
+          "label": "Aula"
+        },
+        {
+          "start": "10:40",
+          "end": "13:30",
+          "label": "Volta pra casa / almoço / livre"
+        },
+        {
+          "start": "13:30",
+          "end": "18:00",
+          "label": "Trabalho (remoto, almoça durante)"
+        },
+        {
+          "start": "18:00",
+          "end": "20:00",
+          "label": "Estudo (faculdade)",
+          "fixed": "study",
+          "minutes": 120
+        },
+        {
+          "start": "20:00",
+          "end": "21:30",
+          "label": "Atividade física",
+          "fixed": "exercise",
+          "minutes": 90
+        },
+        {
+          "start": "21:30",
+          "end": "23:00",
+          "label": "Tempo livre / relaxar"
+        },
+        {
+          "start": "23:00",
+          "end": "05:30",
+          "label": "Dormir (~6h30)"
+        }
+      ]
+    },
+    "aula_qua": {
+      "label": "Dia de aula (08:50–12:20)",
+      "blocks": [
+        {
+          "start": "05:30",
+          "end": "08:50",
+          "label": "Acordar / manhã livre / ir pra aula"
+        },
+        {
+          "start": "08:50",
           "end": "12:20",
           "label": "Aula"
         },
@@ -73,8 +124,116 @@
         }
       ]
     },
+    "aula_qui": {
+      "label": "Dia de aula quinzenal (08:50–12:20)",
+      "blocks": [
+        {
+          "start": "05:30",
+          "end": "08:50",
+          "label": "Acordar / manhã livre / ir pra aula"
+        },
+        {
+          "start": "08:50",
+          "end": "10:40",
+          "label": "Aula"
+        },
+        {
+          "start": "10:40",
+          "end": "10:50",
+          "label": "Intervalo"
+        },
+        {
+          "start": "10:50",
+          "end": "12:20",
+          "label": "Trabalho (faculdade)"
+        },
+        {
+          "start": "12:20",
+          "end": "13:30",
+          "label": "Volta pra casa / pausa"
+        },
+        {
+          "start": "13:30",
+          "end": "18:00",
+          "label": "Trabalho (remoto, almoça durante)"
+        },
+        {
+          "start": "18:00",
+          "end": "20:00",
+          "label": "Estudo (faculdade)",
+          "fixed": "study",
+          "minutes": 120
+        },
+        {
+          "start": "20:00",
+          "end": "21:30",
+          "label": "Atividade física",
+          "fixed": "exercise",
+          "minutes": 90
+        },
+        {
+          "start": "21:30",
+          "end": "23:00",
+          "label": "Tempo livre / relaxar"
+        },
+        {
+          "start": "23:00",
+          "end": "05:30",
+          "label": "Dormir (~6h30)"
+        }
+      ]
+    },
+    "aula_sex": {
+      "label": "Dia de aula (08:50–10:40)",
+      "blocks": [
+        {
+          "start": "05:30",
+          "end": "08:50",
+          "label": "Acordar / manhã livre / ir pra aula"
+        },
+        {
+          "start": "08:50",
+          "end": "10:40",
+          "label": "Aula"
+        },
+        {
+          "start": "10:40",
+          "end": "13:30",
+          "label": "Volta pra casa / almoço / livre"
+        },
+        {
+          "start": "13:30",
+          "end": "18:00",
+          "label": "Trabalho (remoto, almoça durante)"
+        },
+        {
+          "start": "18:00",
+          "end": "20:00",
+          "label": "Estudo (faculdade)",
+          "fixed": "study",
+          "minutes": 120
+        },
+        {
+          "start": "20:00",
+          "end": "21:30",
+          "label": "Atividade física",
+          "fixed": "exercise",
+          "minutes": 90
+        },
+        {
+          "start": "21:30",
+          "end": "23:00",
+          "label": "Tempo livre / relaxar"
+        },
+        {
+          "start": "23:00",
+          "end": "05:30",
+          "label": "Dormir (~6h30)"
+        }
+      ]
+    },
     "sem_aula": {
-      "label": "Dia sem aula (home office o dia todo)",
+      "label": "Quinta sem aula (home office o dia todo)",
       "blocks": [
         {
           "start": "05:30",
